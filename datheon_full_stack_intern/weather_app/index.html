@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherPulse — Real-Time Weather Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="app-container">
+        <!-- Header & Search Form -->
+        <header class="app-header">
+            <h1>Weather<span>Pulse</span></h1>
+            <p>Live meteorological updates powered by REST API</p>
+            <form id="search-form" class="search-form">
+                <input 
+                    type="text" 
+                    id="city-input" 
+                    placeholder="Enter city name (e.g., Lahore, London)..." 
+                    required 
+                    autocomplete="off"
+                >
+                <button type="submit" id="search-btn">Search</button>
+            </form>
+        </header>
+
+        <!-- Dynamic UI Containers -->
+        <!-- 1. Loading State -->
+        <div id="loading-spinner" class="state-container hidden">
+            <div class="spinner"></div>
+            <p>Fetching real-time weather data...</p>
+        </div>
+
+        <!-- 2. Error State -->
+        <div id="error-message" class="state-container error-card hidden">
+            <span class="error-icon">⚠️</span>
+            <p id="error-text">Unable to retrieve weather information. Please try again.</p>
+        </div>
+
+        <!-- 3. Weather Result State -->
+        <section id="weather-card" class="weather-card hidden">
+            <div class="card-header">
+                <div>
+                    <h2 id="city-name">City Name</h2>
+                    <span id="weather-date" class="date-badge">Today</span>
+                </div>
+                <div id="weather-icon-text" class="weather-icon-badge">☀️</div>
+            </div>
+
+            <div class="card-body">
+                <div class="temp-display">
+                    <span id="temperature">--</span><span class="unit">°C</span>
+                </div>
+                <div id="weather-condition" class="condition-badge">Condition</div>
+            </div>
+
+            <div class="card-grid">
+                <div class="metric-item">
+                    <span class="label">Humidity</span>
+                    <span id="humidity" class="value">--%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="label">Wind Speed</span>
+                    <span id="wind-speed" class="value">-- km/h</span>
+                </div>
+                <div class="metric-item">
+                    <span class="label">Elevation</span>
+                    <span id="elevation" class="value">-- m</span>
+                </div>
+                <div class="metric-item">
+                    <span class="label">Timezone</span>
+                    <span id="timezone" class="value">--</span>
+                </div>
+            </div>
+
+            <!-- 5-Day Forecast Section -->
+            <div class="forecast-section">
+                <h3>5-Day Forecast</h3>
+                <div id="forecast-container" class="forecast-grid">
+                    <!-- Injected via JS Array.map() -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
